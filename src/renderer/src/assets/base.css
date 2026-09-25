@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --background: #f7f8fc;
   --foreground: #172033;
   --card: rgba(255, 255, 255, 0.82);
@@ -341,4 +341,173 @@ input {
 }
 .remember input {
   accent-color: var(--primary);
+}
+.submit-button {
+  width: 100%;
+  border: 0;
+  min-height: 50px;
+  border-radius: 11px;
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--primary) 24%, transparent);
+}
+.submit-button:hover {
+  background: var(--primary-strong);
+}
+.submit-button .iconify {
+  width: 17px;
+  height: 17px;
+  margin-left: 10px;
+}
+.signup {
+  margin: 23px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+footer {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  position: absolute;
+  bottom: 22px;
+  color: var(--muted);
+  font-size: 11px;
+}
+footer .iconify {
+  width: 13px;
+  height: 13px;
+}
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(10, 12, 25, 0.46);
+  backdrop-filter: blur(5px);
+}
+.settings-panel {
+  width: min(100%, 430px);
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: 0 22px 70px var(--shadow);
+}
+.settings-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+.settings-heading h2 {
+  margin: 8px 0 0;
+  font-size: 24px;
+  letter-spacing: -0.04em;
+}
+.close-button {
+  width: 30px;
+  height: 30px;
+  font-size: 22px;
+  line-height: 1;
+}
+.close-button .iconify {
+  width: 18px;
+  height: 18px;
+}
+.setting-group {
+  margin-top: 22px;
+}
+.setting-group > span {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+.segmented {
+  display: flex;
+  gap: 5px;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--input);
+}
+.segmented button {
+  flex: 1;
+  padding: 9px 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 12px;
+}
+.segmented button.active {
+  background: var(--card);
+  color: var(--primary);
+  box-shadow: 0 2px 7px var(--shadow);
+  font-weight: 700;
+}
+.theme-options button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.theme-options .iconify {
+  width: 15px;
+  height: 15px;
+}
+@media (max-width: 760px) {
+  .login-shell {
+    justify-content: flex-start;
+    padding-top: 88px;
+    padding-bottom: 24px;
+  }
+  .split-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    width: min(432px, 100%);
+  }
+  .brand-panel {
+    padding: 0;
+    text-align: center;
+  }
+  .brand-logo {
+    width: 100px;
+    margin: 0 auto 16px;
+    border-radius: 22px;
+  }
+  .brand-panel h2 {
+    margin: 0 0 7px;
+    font-size: 26px;
+  }
+  .brand-panel > p {
+    margin: 0 auto;
+    font-size: 13px;
+  }
+  .brand-trust {
+    display: none;
+  }
+  .login-card {
+    padding: 30px 24px 28px;
+  }
+}
+@media (max-width: 520px) {
+  .login-shell {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .topbar {
+    left: 18px;
+    right: 18px;
+  }
+  .settings-button span {
+    display: none;
+  }
+  .login-card {
+    padding: 34px 24px 30px;
+  }
 }
