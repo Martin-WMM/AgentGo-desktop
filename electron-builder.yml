@@ -1,5 +1,6 @@
 appId: com.agentgo.desktop
 productName: AgentGo Desktop
+executableName: agentgo-desktop
 directories:
   buildResources: build
 files:
