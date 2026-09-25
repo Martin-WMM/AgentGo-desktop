@@ -69,7 +69,7 @@ jobs:
             parents=$(git rev-list --parents -n 1 "$sha" | awk '{print NF - 1}')
             (( parents > 1 )) && continue
             message=$(git log -1 --format=%s "$sha")
-            [[ "$message" =~ ^[^[:space:]][^:]*[a-z]+:\ .+ ]] || { echo "Invalid commit: $message"; exit 1; }
+            [[ "$message" =~ ^[a-z][a-z0-9-]*(\([a-z0-9._/-]+\))?:\ .+ ]] || { echo "Invalid commit: $message"; exit 1; }
             changed=$(git diff-tree --no-commit-id --numstat -r "$sha" | awk '$3 !~ /(^|\/)pnpm-lock\.yaml$/ {a+=$1; d+=$2} END {print a+d+0}')
             (( changed <= 300 )) || { echo "Commit $sha changes $changed lines"; exit 1; }
           done < <(git rev-list --first-parent "$range")
