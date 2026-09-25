@@ -57,6 +57,10 @@ jobs:
           else
             range="${{ github.event.before }}..${{ github.sha }}"
           fi
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            echo "Push policy enforcement is handled by protected-branch pull request checks."
+            exit 0
+          fi
           if [[ "${{ github.event_name }}" == "pull_request" && "${{ github.head_ref }}" == release/* ]]; then
             echo "Release promotion: commit policy was enforced before entering the release branch."
             exit 0
