@@ -1,39 +1,48 @@
 :root {
-  --background: oklch(0.98 0.01 260);
-  --foreground: oklch(0.2 0.03 260);
-  --card: oklch(1 0 0);
-  --border: oklch(0.9 0.02 260);
-  --primary: oklch(0.56 0.18 265);
-  --primary-foreground: oklch(0.98 0.01 260);
-  --secondary: oklch(0.94 0.03 260);
-  --secondary-foreground: oklch(0.3 0.06 260);
-  --muted-foreground: oklch(0.5 0.04 260);
+  --background: #f7f8fc;
+  --foreground: #172033;
+  --card: rgba(255, 255, 255, 0.82);
+  --border: #e6e8f0;
+  --primary: #5b5ce2;
+  --primary-strong: #4849c6;
+  --muted: #747b91;
+  --input: #f8f9fc;
+  --shadow: rgba(54, 52, 130, 0.13);
 }
-
+:root[data-theme='dark'] {
+  --background: #11131d;
+  --foreground: #f2f3fa;
+  --card: rgba(28, 31, 45, 0.84);
+  --border: #34384c;
+  --primary: #8788ff;
+  --primary-strong: #a4a5ff;
+  --muted: #a2a7bb;
+  --input: #202334;
+  --shadow: rgba(0, 0, 0, 0.32);
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-border: var(--border);
   --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-primary-foreground: #fff;
+  --color-secondary: var(--input);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted);
 }
-
 * {
   box-sizing: border-box;
 }
-
 html,
 body,
 #app {
   min-width: 320px;
+  height: 100vh;
   min-height: 100vh;
   margin: 0;
+  overflow: hidden;
 }
-
 body {
   font-family:
     Inter,
@@ -43,6 +52,7 @@ body {
     BlinkMacSystemFont,
     'Segoe UI',
     sans-serif;
+  color: var(--foreground);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
