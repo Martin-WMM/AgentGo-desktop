@@ -57,6 +57,10 @@ jobs:
           else
             range="${{ github.event.before }}..${{ github.sha }}"
           fi
+          if [[ "${{ github.event_name }}" == "pull_request" && "${{ github.head_ref }}" == release/* ]]; then
+            echo "Release promotion: commit policy was enforced before entering the release branch."
+            exit 0
+          fi
           while IFS= read -r sha; do
             parents=$(git rev-list --parents -n 1 "$sha" | awk '{print NF - 1}')
             (( parents > 1 )) && continue
