@@ -1,0 +1,78 @@
+name: Release Desktop
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Package ${{ matrix.platform }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux
+            os: ubuntu-24.04
+            target: linux
+          - platform: macos
+            os: macos-14
+            target: mac
+          - platform: windows
+            os: windows-2022
+            target: win
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build installer
+        run: pnpm build:${{ matrix.target }}
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agentgo-release-${{ matrix.platform }}
+          path: dist/**
+          if-no-files-found: error
+          retention-days: 30
+
+  release:
+    name: Create GitHub Release
+    needs: package
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read release version
+        id: version
+        shell: bash
+        run: echo "tag=v$(node -p \"require('./package.json').version\")" >> "$GITHUB_OUTPUT"
+      - name: Download installer artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: agentgo-release-*
+          path: release-assets
+          merge-multiple: true
+      - name: Create tag and release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; refusing to overwrite it."
+            exit 1
+          fi
+          mapfile -t assets < <(find release-assets -type f -print)
+          gh release create "$TAG" "${assets[@]}" \
+            --target "$GITHUB_SHA" \
+            --title "AgentGo $TAG" \
+            --generate-notes
