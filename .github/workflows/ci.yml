@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+permissions:
+  contents: read
+
+jobs:
+  repository-policy:
+    name: Repository policy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Validate required files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f README.md
+          test -f .gitignore
+          test -f .github/pull_request_template.md
+          test -d .github/ISSUE_TEMPLATE
+      - name: Validate commit messages and size
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            range="${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
+          elif [[ "${{ github.event.before }}" == "0000000000000000000000000000000000000000" ]]; then
+            range="${{ github.sha }}"
+          else
+            range="${{ github.event.before }}..${{ github.sha }}"
+          fi
+          while IFS= read -r sha; do
+            parents=$(git rev-list --parents -n 1 "$sha" | awk '{print NF - 1}')
+            (( parents > 1 )) && continue
+            message=$(git log -1 --format=%s "$sha")
+            [[ "$message" =~ ^[^[:space:]][^:]*[a-z]+:\ .+ ]] || { echo "Invalid commit: $message"; exit 1; }
+            changed=$(git diff-tree --no-commit-id --numstat -r "$sha" | awk '$3 !~ /(^|\/)pnpm-lock\.yaml$/ {a+=$1; d+=$2} END {print a+d+0}')
+            (( changed <= 300 )) || { echo "Commit $sha changes $changed lines"; exit 1; }
+          done < <(git rev-list --first-parent "$range")

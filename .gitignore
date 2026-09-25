@@ -1,0 +1,34 @@
+node_modules/
+dist/
+out/
+release/
+coverage/
+.vite/
+.turbo/
+.cache/
+*.log
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# Electron builder artifacts
+*.AppImage
+*.dmg
+*.exe
+*.msi
+*.deb
+*.rpm
+*.snap
+*.blockmap
+latest.yml
+latest-mac.yml
+latest-linux.yml
+
+# Local tooling and operating-system files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json

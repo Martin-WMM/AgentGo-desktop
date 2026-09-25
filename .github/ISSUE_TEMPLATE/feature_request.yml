@@ -1,0 +1,19 @@
+name: Feature request
+description: Propose an improvement for AgentGo Desktop
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and expected outcome
+      description: Explain the user problem and the result you want.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List the conditions that define completion.
+    validations:
+      required: true
