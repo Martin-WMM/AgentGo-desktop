@@ -70,8 +70,8 @@ jobs:
           TAG: ${{ steps.version.outputs.tag }}
         run: |
           if gh release view "$TAG" >/dev/null 2>&1; then
-            echo "Release $TAG already exists; refusing to overwrite it."
-            exit 1
+            echo "Release $TAG already exists; skipping duplicate publication. Bump package.json version for the next release."
+            exit 0
           fi
           mapfile -t packages < <(find release-assets -mindepth 1 -maxdepth 1 -type d -print | sort)
           assets=()
