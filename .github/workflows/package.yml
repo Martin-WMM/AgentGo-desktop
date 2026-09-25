@@ -41,6 +41,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: agentgo-desktop-${{ matrix.platform }}-${{ github.sha }}
-          path: release/**
+          path: dist/**
           if-no-files-found: error
           retention-days: 14
