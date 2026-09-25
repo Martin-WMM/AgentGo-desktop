@@ -63,7 +63,7 @@ jobs:
         with:
           pattern: agentgo-release-*
           path: release-assets
-          merge-multiple: true
+          merge-multiple: false
       - name: Create tag and release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -73,7 +73,14 @@ jobs:
             echo "Release $TAG already exists; refusing to overwrite it."
             exit 1
           fi
-          mapfile -t assets < <(find release-assets -type f -print)
+          mapfile -t packages < <(find release-assets -mindepth 1 -maxdepth 1 -type d -print | sort)
+          assets=()
+          for package in "${packages[@]}"; do
+            platform="${package##*-}"
+            archive="AgentGo-${TAG}-${platform}.tar.gz"
+            tar -czf "$archive" -C "$package" .
+            assets+=("$archive")
+          done
           gh release create "$TAG" "${assets[@]}" \
             --target "$GITHUB_SHA" \
             --title "AgentGo $TAG" \
