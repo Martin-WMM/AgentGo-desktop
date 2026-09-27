@@ -1,35 +1,67 @@
 <p align="center">
-  <img src="src/renderer/src/assets/logo-dark.png" alt="AgentGo" width="180">
+  <img src="resources/agentgo-logo.png" alt="AgentGo Logo" width="180">
 </p>
 
 <h1 align="center">AgentGo Desktop</h1>
 
 <p align="center">
   <a href="https://github.com/Martin-WMM/AgentGo-desktop/actions/workflows/ci.yml"><img src="https://github.com/Martin-WMM/AgentGo-desktop/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
-  <a href="https://github.com/Martin-WMM/AgentGo-desktop"><img src="https://img.shields.io/github/stars/Martin-WMM/AgentGo-desktop" alt="GitHub stars"></a>
+  <a href="https://img.shields.io/github/stars/Martin-WMM/AgentGo-desktop"><img src="https://img.shields.io/github/stars/Martin-WMM/AgentGo-desktop" alt="GitHub stars"></a>
 </p>
 
-AgentGo 的跨平台 Electron 客户端，面向 Windows、macOS 和 Linux，连接 AgentGo Backend 提供桌面端 Agent 工作流体验。
+## 1. Introduction / 简介
 
-## 项目状态
+AgentGo Desktop is the Electron client for Windows, macOS, and Linux. It connects
+to AgentGo Backend and provides a desktop agent workflow experience.
 
-项目正在初始化阶段。当前优先完善桌面壳、渲染器、预加载桥接和安全边界。
+AgentGo Desktop 是面向 Windows、macOS 和 Linux 的 Electron 客户端，连接 AgentGo Backend，
+提供桌面端 Agent 工作流体验。
 
-## 开发
+## 2. Updates / 更新
+
+- Desktop shell, renderer, preload bridge, and security boundaries are being established.
+- Cross-platform packaging and CI checks are enabled.
+- Backend integration is designed around a typed, allowlisted preload API.
+
+- 正在完善桌面壳、渲染器、预加载桥接和安全边界。
+- 已启用跨平台打包和 CI 检查。
+- 后端连接通过类型化、具备 allowlist 的 preload API 实现。
+
+## 3. Getting Started / 快速开始
+
+Requirements / 环境要求: Node.js and pnpm。
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
-构建和测试命令以 [`package.json`](package.json) 为准。
+Use the scripts in [`package.json`](package.json) for build and test commands。
 
-## 文档
+构建和测试命令请以 [`package.json`](package.json) 中的 scripts 为准。
 
-架构、桌面安全、后端连接和贡献流程请查看 [AgentGo Docs](https://github.com/Martin-WMM/AgentGo-docs) 及[二次开发指南](https://github.com/Martin-WMM/AgentGo-docs/tree/main/app/src/resources/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91)。
+## 4. Contribution / 参与贡献
 
-桌面端必须保持 `contextIsolation` 开启、关闭 renderer `nodeIntegration`，并通过类型化且有 allowlist 的 preload API 暴露系统能力。
+Follow the protected branch flow and keep `contextIsolation` enabled. Renderer
+`nodeIntegration` must remain disabled; expose system capabilities only through
+the typed preload allowlist。
 
-## 许可证
+请遵守受保护分支流程，保持 `contextIsolation` 开启，关闭 renderer 的
+`nodeIntegration`，并仅通过类型化的 preload allowlist 暴露系统能力。
 
-本项目采用 [AgentGo Proprietary License](LICENSE)。版权所有归 Martin M. W.（王美民）所有。任何使用、修改、分发或商业用途，均须先通过 `blessedwmm@gmail.com` 获得本人书面确认授权。
+See [AgentGo Docs](https://github.com/Martin-WMM/AgentGo-docs) for architecture and
+secondary-development guidance。
+
+## 5. License / 许可证
+
+This project is governed by the [AgentGo Proprietary License](LICENSE)。All rights
+belong to Martin M. W. (王美民). Any use, modification, distribution, or commercial
+use requires prior written confirmation at `blessedwmm@gmail.com`。
+
+本项目采用 [AgentGo Proprietary License](LICENSE)。所有权利归 Martin M. W.（王美民）所有。
+任何使用、修改、分发或商业用途，均须先通过 `blessedwmm@gmail.com` 获得本人书面确认授权。
+
+## Related Projects / 相关项目
+
+- [AgentGo Backend](https://github.com/Martin-WMM/AgentGo-backend) · [AgentGo UI](https://github.com/Martin-WMM/AgentGo-UI)
+- [AgentGo Docs](https://github.com/Martin-WMM/AgentGo-docs)
