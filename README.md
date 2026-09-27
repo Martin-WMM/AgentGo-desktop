@@ -29,3 +29,7 @@ npm run dev
 架构、桌面安全、后端连接和贡献流程请查看 [AgentGo Docs](https://github.com/Martin-WMM/AgentGo-docs) 及[二次开发指南](https://github.com/Martin-WMM/AgentGo-docs/tree/main/app/src/resources/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91)。
 
 桌面端必须保持 `contextIsolation` 开启、关闭 renderer `nodeIntegration`，并通过类型化且有 allowlist 的 preload API 暴露系统能力。
+
+## 许可证
+
+本项目采用 [AgentGo Proprietary License](LICENSE)。版权所有归 Martin M. W.（王美民）所有。任何使用、修改、分发或商业用途，均须先通过 `blessedwmm@gmail.com` 获得本人书面确认授权。
