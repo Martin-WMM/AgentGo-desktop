@@ -7,6 +7,10 @@
 <p align="center">
   <a href="https://github.com/Martin-WMM/AgentGo-desktop/actions/workflows/ci.yml"><img src="https://github.com/Martin-WMM/AgentGo-desktop/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
   <a href="https://img.shields.io/github/stars/Martin-WMM/AgentGo-desktop"><img src="https://img.shields.io/github/stars/Martin-WMM/AgentGo-desktop" alt="GitHub stars"></a>
+  <img src="https://img.shields.io/badge/Electron-44.4.5-47848F?logo=electron&logoColor=white" alt="Electron 44.4.5">
+  <img src="https://img.shields.io/badge/Vue-3.5.25-4FC08D?logo=vuedotjs&logoColor=white" alt="Vue 3.5.25">
+  <img src="https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5.9.3">
+  <img src="https://img.shields.io/badge/Node.js-22-339933?logo=nodedotjs&logoColor=white" alt="Node.js 22">
 </p>
 
 ## 1. Introduction / 简介
