@@ -9,6 +9,13 @@ export default defineConfig(
   tseslint.configs.recommended,
   eslintPluginVue.configs['flat/recommended'],
   {
+    files: ['.github/scripts/*.cjs'],
+    rules: {
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/no-require-imports': 'off'
+    }
+  },
+  {
     files: ['**/*.vue'],
     languageOptions: {
       parser: vueParser,
